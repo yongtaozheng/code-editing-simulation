@@ -3,7 +3,7 @@
   "displayName": "code-editing-simulation",
   "description": "模拟代码逐字输入过程",
   "publisher": "jyeontu",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "icon.jpg",
   "author": "JYeontn <jyeontu@163.com>",
   "engines": {

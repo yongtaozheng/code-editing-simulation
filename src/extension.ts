@@ -30,9 +30,19 @@ export function activate(context: vscode.ExtensionContext) {
                 filters: { '代码文件': ['js', 'ts', 'py', 'java', 'html', 'css','vue'] }
             });
             if (uri && uri[0]) {
+                const langMap: { [key: string]: string } = {
+                    js: 'javascript',
+                    ts: 'typescript',
+                    py: 'python',
+                    java: 'java',
+                    html: 'html',
+                    css: 'css',
+                    vue: 'vue'
+                  };
+                  const ext = path.extname(uri[0].fsPath).substring(1);
+                  const lang = langMap[ext] || ext; // 使用官方语言标识符
                 code = fs.readFileSync(uri[0].fsPath, 'utf8');
                 // 自动检测语言模式
-                const lang = path.extname(uri[0].fsPath).substring(1);
                 await vscode.languages.setTextDocumentLanguage(editor.document, lang);
             }
         }
@@ -44,14 +54,24 @@ export function activate(context: vscode.ExtensionContext) {
         
         // 开始逐字输入
         for (let i = 0; i < code.length; i++) {
-            
+            // 检测 "@保存@" 标记（需保证剩余字符足够）
+            if (i <= code.length - 4 && 
+                code[i] === '@' && 
+                code[i+1] === '保' && 
+                code[i+2] === '存' && 
+                code[i+3] === '@') {
+                i += 4;
+                await editor.document.save();
+                continue; // 不插入标记内容
+            }
+            const maxLine = editor.document.lineCount - 1;
             // 处理换行符
             if (code[i] === '\n') {
-                position = position.with(position.line + 1, 0);
+                position = position.with(Math.min(position.line + 1,maxLine), 0);
 				continue;
             }
 			// 获取当前行信息
-			const currentLine = editor.document.lineAt(position.line);
+			const currentLine = editor.document.lineAt(Math.min(position.line + 1,maxLine));
 			
 			await editor.edit(editBuilder => {
 				// 清空光标右侧内容
@@ -70,6 +90,7 @@ export function activate(context: vscode.ExtensionContext) {
             await new Promise(resolve => 
                 setTimeout(resolve, vscode.workspace.getConfiguration().get('simulateTyping.speed') || 50));
         }
+        await editor.document.save();
     });
 
     context.subscriptions.push(disposable);
