@@ -89,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
                 continue;
             }
 			// 获取当前行信息
-			const currentLine = editor.document.lineAt(Math.min(position.line + 1,maxLine));
+			const currentLine = editor.document.lineAt(Math.min(position.line,maxLine));
 			
 			await editor.edit(editBuilder => {
 				// 清空光标右侧内容
