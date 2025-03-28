@@ -4,7 +4,7 @@ import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
     // 注册主命令
-    let disposable = vscode.commands.registerCommand('extension.simulateTyping', async () => {
+    let disposable = vscode.commands.registerCommand('extension.simulateTyping', async (e) => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             vscode.window.showErrorMessage('请在活动编辑器中打开文件');
@@ -67,8 +67,26 @@ export function activate(context: vscode.ExtensionContext) {
             const maxLine = editor.document.lineCount - 1;
             // 处理换行符
             if (code[i] === '\n') {
-                position = position.with(Math.min(position.line + 1,maxLine), 0);
-				continue;
+                // 移动光标到下一行行首
+                const newLine = Math.min(position.line + 1, maxLine);
+                position = new vscode.Position(newLine, 0);
+            
+                if(newLine > 20){
+                    // 计算滚动位置（核心修改点）
+                    const scrollPosition = new vscode.Range(
+                        Math.max(0, newLine - 20),  // 向上滚动一行
+                        position.character,
+                        newLine,
+                        position.character
+                    );
+                
+                    // 平滑滚动（使用 AtTop 模式）
+                    editor.revealRange(
+                        scrollPosition,
+                        vscode.TextEditorRevealType.AtTop
+                    );
+                }
+                continue;
             }
 			// 获取当前行信息
 			const currentLine = editor.document.lineAt(Math.min(position.line + 1,maxLine));
