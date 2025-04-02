@@ -4,50 +4,39 @@ import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
     // 注册主命令
-    let disposable = vscode.commands.registerCommand('extension.simulateTyping', async (e) => {
+    const disposable = vscode.commands.registerCommand('extension.simulateTyping', async () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             vscode.window.showErrorMessage('请在活动编辑器中打开文件');
             return;
         }
-
-        // 选择输入源
-        const sourceType = await vscode.window.showQuickPick(
-            ['手动输入', '选择文件'],
-            { placeHolder: '选择代码来源' }
-        );
-
-        let code = '';
-        if (sourceType === '手动输入') {
-            code = await vscode.window.showInputBox({
-                prompt: '输入要模拟的代码',
-                placeHolder: '例如：console.log("Hello World!");'
-            }) || '';
-        } else if (sourceType === '选择文件') {
-            const uri = await vscode.window.showOpenDialog({
-                canSelectMany: false,
-                openLabel: '选择代码文件',
-                filters: { '代码文件': ['js', 'ts', 'py', 'java', 'html', 'css','vue'] }
-            });
-            if (uri && uri[0]) {
-                const langMap: { [key: string]: string } = {
-                    js: 'javascript',
-                    ts: 'typescript',
-                    py: 'python',
-                    java: 'java',
-                    html: 'html',
-                    css: 'css',
-                    vue: 'vue'
-                  };
-                  const ext = path.extname(uri[0].fsPath).substring(1);
-                  const lang = langMap[ext] || ext; // 使用官方语言标识符
-                code = fs.readFileSync(uri[0].fsPath, 'utf8');
-                // 自动检测语言模式
-                await vscode.languages.setTextDocumentLanguage(editor.document, lang);
-            }
+        const uri = await vscode.window.showOpenDialog({
+            canSelectMany: false,
+            openLabel: '选择代码文件',
+            filters: { '代码文件': ['js', 'ts', 'py', 'java', 'html', 'css','vue','text','txt'] }
+        });
+        if(!uri?.[0]){
+            return;
         }
+        let code = '';
+        const langMap: { [key: string]: string } = {
+            js: 'javascript',
+            ts: 'typescript',
+            py: 'python',
+            java: 'java',
+            html: 'html',
+            css: 'css',
+            vue: 'vue',
+            text: 'plaintext',
+            txt: 'plaintext'
+            };
+            const ext = path.extname(uri[0].fsPath).substring(1);
+            const lang = langMap[ext] || ext; // 使用官方语言标识符
+        code = fs.readFileSync(uri[0].fsPath, 'utf8');
+        // 自动检测语言模式
+        await vscode.languages.setTextDocumentLanguage(editor.document, lang);
 
-        if (!code) return;
+        if (!code) {return;}
 
         // 获取初始光标位置
         let position = editor.selection.active;
@@ -60,13 +49,18 @@ export function activate(context: vscode.ExtensionContext) {
                 code[i+1] === '保' && 
                 code[i+2] === '存' && 
                 code[i+3] === '@') {
-                i += 4;
+                i += 3;
                 await editor.document.save();
                 continue; // 不插入标记内容
             }
             const maxLine = editor.document.lineCount - 1;
             // 处理换行符
             if (code[i] === '\n') {
+                if(code[i - 1] === '\n'){
+                    await editor.edit(editBuilder => {
+                        editBuilder.insert(position, '\n'); // 在当前位置插入换行符
+                    });
+                }
                 // 移动光标到下一行行首
                 const newLine = Math.min(position.line + 1, maxLine);
                 position = new vscode.Position(newLine, 0);
