@@ -3,7 +3,7 @@
   "displayName": "code-editing-simulation",
   "description": "模拟代码逐字输入过程",
   "publisher": "jyeontu",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "icon": "icon.jpg",
   "author": "JYeontn <jyeontu@163.com>",
   "engines": {
@@ -20,15 +20,42 @@
   "main": "./out/extension.js",
   "contributes": {
     "commands": [{
-            "command": "extension.simulateTyping",
+            "command": "simulateTypingPlugins.simulateTyping",
             "title": "模拟代码输入"
+        },{
+            "command": "simulateTypingPlugins.editConfig",
+            "title": "修改配置"
         }],
     "keybindings": [
       {
-        "command": "extension.simulateTyping",
+        "command": "simulateTypingPlugins.simulateTyping",
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
         "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "simulateTypingPlugins",
+          "group": "navigation"
+        }
+      ],
+      "simulateTypingPlugins": [
+        {
+          "command": "simulateTypingPlugins.simulateTyping",
+          "group": "group1"
+        },
+        {
+          "command": "simulateTypingPlugins.editConfig",
+          "group": "group1"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "simulateTypingPlugins",
+        "label": "模拟代码输入"
       }
     ],
     "configuration": {

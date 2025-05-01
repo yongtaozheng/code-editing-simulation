@@ -1,0 +1,12 @@
+{
+  "saveFlag": {
+    "value": "@保存@",
+    "inputTip": "保存标识",
+    "key": "saveFlag"
+  },
+  "printSpeed":{
+    "value": 50,
+    "inputTip": "打印速度（毫秒/字符）",
+    "key": "printSpeed"
+  }
+}
