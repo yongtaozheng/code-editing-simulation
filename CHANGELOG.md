@@ -4,6 +4,7 @@ All notable changes to the "code-editing-simulation" extension will be documente
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [0.0.9]
 
-- Initial release
+- 模拟代码输入功能
+- 修改配置功能
