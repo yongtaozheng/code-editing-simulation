@@ -2,7 +2,6 @@
 
 ![1746199494274](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746199494274.png)
 
-
 ## 功能简介
 
 模拟手打逐字输入效果，可以用于视频录制时重现代码实现过程。
@@ -34,25 +33,34 @@
 #### 在当前光标所在位置全量插入代码
 
 - 首先需要新建一个txt文件，在文件中准备好需要输入的代码，如下图，我们有一个code.txt文件，里面有几行代码。
+
   ![1746199693300](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746199693300.png)
 - 在需要插入代码的地方右键选择模拟代码输入，也可以直接使用快捷键（Ctrl+Alt+C）
+
   ![1746199893252](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746199893252.png)
 - 在弹出的文件选择框中选择需要插入的代码文件，这里选择我们前面准备的code.txt
+
   ![1746200011228](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200011228.png)
 - 选择好文件后，插件就会将文件中的代码插入到当前光标的位置中去
+
   ![1746200074619](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200074619.png)
 
 #### 根据标识符在对应位置插入代码
 
 - 同样需要新建一个txt文件，在文件中准备好需要输入的代码，这里的代码格式需要进行调整，具体格式如下，每一段代码都有一个中括号标签包着：
+
   ![1746200266594](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200266594.png)
 - 中括号里的标识需要与原代码中的标识一致，对应标签中的代码会被插到对应标识之后，如下图：
+
   ![1746200394262](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200394262.png)
 - 在需要插入代码的文件中右键选择模拟代码输入，也可以直接使用快捷键（Ctrl+Alt+C）
+
   ![1746199893252](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746199893252.png)
 - 在弹出的文件选择框中选择需要插入的代码文件，这里选择我们前面准备的index.txt
+
   ![1746200553598](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200553598.png)
 - 选择好文件后，插件就会将文件中每个标识标签中的代码插入到对应标识所在的位置中去
+
   ![1746200636367](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200636367.png)
 
 ## 联系作者
