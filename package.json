@@ -25,12 +25,21 @@
         },{
             "command": "simulateTypingPlugins.editConfig",
             "title": "修改配置"
+        },{
+            "command": "simulateTypingPlugins.stopTyping",
+            "title": "停止输入"
         }],
     "keybindings": [
       {
         "command": "simulateTypingPlugins.simulateTyping",
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "simulateTypingPlugins.stopTyping",
+        "key": "ctrl+alt+v",
+        "mac": "cmd+alt+v",
         "when": "editorTextFocus"
       }
     ],
@@ -49,6 +58,10 @@
         {
           "command": "simulateTypingPlugins.editConfig",
           "group": "group1"
+        },
+        {
+          "command": "simulateTypingPlugins.stopTyping",
+          "group": "group1"
         }
       ]
     },
@@ -59,14 +72,7 @@
       }
     ],
     "configuration": {
-        "title": "代码模拟输入",
-        "properties": {
-            "simulateTyping.speed": {
-                "type": "number",
-                "default": 50,
-                "description": "输入速度（毫秒/字符）"
-            }
-        }
+        "title": "代码模拟输入"
     }
   },
   "scripts": {

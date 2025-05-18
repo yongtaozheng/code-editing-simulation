@@ -2,6 +2,8 @@
 
 ![1746199494274](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746199494274.png)
 
+视频介绍：[https://mp.weixin.qq.com/s/ZUXj4aO0TFazrmTd3WSaoQ](https://mp.weixin.qq.com/s/ZUXj4aO0TFazrmTd3WSaoQ)
+
 ## 功能简介
 
 模拟手打逐字输入效果，可以用于视频录制时重现代码实现过程。
@@ -20,11 +22,18 @@
 
 ![1746198960410](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746198960410.png)
 
-- 保存标识
-  在自动输入的过程中，识别到保存标识的时候会触发保存事件，将文件保存，默认保存标识为：**@保存@**。
-  比如使用canvas绘制图像的时候，我们可以在画完一笔的时候保存一下，这时候可以直观的看到每一笔的绘制效果。
-- 打印速度（毫秒/字符）
-  字符输入的速度，默认是50，即每50毫秒输入一个字符。
+#### 保存标识
+
+在自动输入的过程中，识别到保存标识的时候会触发保存事件，将文件保存，默认保存标识为：**@保存@**。
+比如使用canvas绘制图像的时候，我们可以在画完一笔的时候保存一下，这时候可以直观的看到每一笔的绘制效果。
+
+#### 打印速度（毫秒/字符）
+
+字符输入的速度，默认是50，即每50毫秒输入一个字符。
+
+#### 默认文件（初始化为default.txt）
+
+可以设置默认文件，如果默认文件存在，执行模拟代码输入的时候就不用手动二次选择文件，会直接读取设置的文件内容来执行输入操作。
 
 ### 模拟代码输入
 
@@ -62,6 +71,13 @@
 - 选择好文件后，插件就会将文件中每个标识标签中的代码插入到对应标识所在的位置中去
 
   ![1746200636367](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200636367.png)
+
+
+#### 停止输入
+
+输入过程中可以进行终止输入操作，右键菜单栏选择停止输入或者直接使用快捷键 ctrl+alt+v
+
+![1747587937044](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1747587937044.png)
 
 ## 联系作者
 

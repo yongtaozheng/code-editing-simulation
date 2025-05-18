@@ -4,9 +4,14 @@
     "inputTip": "保存标识",
     "key": "saveFlag"
   },
-  "printSpeed":{
+  "printSpeed": {
     "value": 50,
     "inputTip": "打印速度（毫秒/字符）",
     "key": "printSpeed"
+  },
+  "defaultFile": {
+    "value": "default.txt",
+    "inputTip": "默认文件",
+    "key": "defaultFile"
   }
 }
