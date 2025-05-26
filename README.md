@@ -72,7 +72,6 @@
 
   ![1746200636367](https://gitee.com/zheng_yongtao/code-editing-simulation/raw/master/images/README/1746200636367.png)
 
-
 #### 停止输入
 
 输入过程中可以进行终止输入操作，右键菜单栏选择停止输入或者直接使用快捷键 ctrl+alt+v
@@ -89,7 +88,14 @@
 
 ### 源码地址
 
+#### gitee
+
 [https://gitee.com/zheng_yongtao/code-editing-simulation.git](https://gitee.com/zheng_yongtao/code-editing-simulation.git)
+
+#### github
+
+[https://github.com/yongtaozheng/code-editing-simulation.git](https://github.com/yongtaozheng/code-editing-simulation.git)
+
 
 > 🌟 觉得有帮助的可以点个 star~
 > 🖊 有什么问题或错误可以指出，欢迎 pr~

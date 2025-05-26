@@ -45,6 +45,19 @@ async function typingCode(code:string,saveFlag:string,printSpeed:number,editor:v
             }
             continue;
         }
+        // 检测空格，空格一次性输入
+        let spaceCount = 0;
+        while (i < code.length && code[i] === ' ') {
+            spaceCount++;
+            i++; 
+        }
+        if (spaceCount > 0) {
+            const space = ' '.repeat(spaceCount);
+            await editor.edit(editBuilder => {
+                editBuilder.insert(position, space);
+            }); 
+            position = position.translate(0, spaceCount); // 更新光标位置
+        }
         // 获取当前行信息
         const currentLine = editor.document.lineAt(Math.min(position.line,maxLine));
         

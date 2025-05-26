@@ -4,6 +4,10 @@ All notable changes to the "code-editing-simulation" extension will be documente
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.1.1]
+
+- 优化空格输入逻辑，连续的空格一次性输入
+
 ## [0.1.0]
 
 - 添加输入中断功能
